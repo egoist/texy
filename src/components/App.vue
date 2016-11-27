@@ -46,7 +46,8 @@
         placeholder="Write your story...">
       </textarea>
       <div class="preview">
-        <canvas ref="canvas"></canvas>
+        <canvas ref="canvas" style="display: none"></canvas>
+        <img v-show="dataURL" ref="image" :src="dataURL" />
       </div>
     </div>
   </div>
@@ -61,6 +62,7 @@
     data() {
       return {
         text: initialQuery.text || '',
+        dataURL: '',
         settings: {
           backgroundColor: initialQuery.backgroundColor || '#ffffff',
           textColor: initialQuery.textColor || '#000000'
@@ -76,6 +78,11 @@
       this.handleChange()
     },
     methods: {
+      updateDataURL() {
+        const {canvas} = this.$refs
+        const ctx = canvas.getContext('2d')
+        this.dataURL = canvas.toDataURL()
+      },
       handleChange() {
         console.log('render...')
         const {text} = this
@@ -105,6 +112,8 @@
         for (let i = 0; i < lines.length; i++) {
           ctx.fillText(lines[i], x, y + (i * lineheight))
         }
+
+        this.updateDataURL()
       },
       updateHash() {
         const query = {
@@ -154,9 +163,11 @@
     overflow: auto;
     .site-title {
       margin: 0 0 10px 0;
-      color: #333;
-      &:hover {
-        text-decoration: none;
+      a {
+        color: #333;
+        &:hover {
+          text-decoration: none;
+        }
       }
     }
     .description {
