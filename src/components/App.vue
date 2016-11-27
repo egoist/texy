@@ -29,6 +29,12 @@
             v-model="settings.textColor">
         </div>
         <div class="form-group">
+          <label for="left-to-right">
+            <input type="checkbox" id="left-to-right" v-model="settings.leftToRight" />
+            Left to Right
+          </label>
+        </div>
+        <div class="form-group">
           <button
             type="button"
             class="button"
@@ -53,7 +59,9 @@
          <a href="https://github.com/egoist/texy">Built with Vue.</a>
        </div>
     </figure>
-    <div class="main">
+    <div
+      class="main"
+      :class="{'left-to-right': settings.leftToRight}">
       <textarea
         class="input"
         rows="10"
@@ -84,7 +92,8 @@
         dataURL: '',
         settings: {
           backgroundColor: initialQuery.backgroundColor || '#ffffff',
-          textColor: initialQuery.textColor || '#000000'
+          textColor: initialQuery.textColor || '#000000',
+          leftToRight: initialQuery.leftToRight === 'true' ? true : false
         }
       }
     },
@@ -205,6 +214,13 @@
     height: 100%;
     display: flex;
     flex-direction: column;
+    &.left-to-right {
+      flex-direction: row;
+      .input, .preview {
+        width: 50%;
+        height: 100%;
+      }
+    }
   }
   .input {
     height: 50%;
