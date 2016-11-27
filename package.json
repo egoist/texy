@@ -1,0 +1,10 @@
+{
+  "private": true,
+  "name": "texy",
+  "scripts": {
+    "dev": "vbuild --dev",
+    "build": "vbuild",
+    "surge": "npm run build && surge -d texy.surge.sh -p dist"
+  },
+  "dependencies": {}
+}
