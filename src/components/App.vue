@@ -61,7 +61,7 @@
   export default {
     data() {
       return {
-        text: initialQuery.text || '',
+        text: '',
         dataURL: '',
         settings: {
           backgroundColor: initialQuery.backgroundColor || '#ffffff',
@@ -75,6 +75,9 @@
       })
       this.$watch('text', this.handleChange)
 
+      if (initialQuery.text) {
+        this.text = initialQuery.text
+      }
       this.handleChange()
     },
     methods: {
