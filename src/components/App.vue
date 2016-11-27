@@ -146,12 +146,6 @@
         }
 
         this.updateDataURL()
-        this.syncScroll()
-      },
-      syncScroll() {
-        const {input, preview} = this.$refs
-        const percentage = input.scrollTop / input.scrollHeight
-        preview.scrollTop = percentage * preview.scrollHeight
       }
     }
   }

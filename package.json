@@ -4,12 +4,16 @@
   "scripts": {
     "dev": "vbuild --dev",
     "build": "vbuild",
-    "surge": "npm run build && surge -d texy.surge.sh -p dist"
+    "surge": "npm run build && surge -d texy.surge.sh -p dist",
+    "gh": "npm run build && gh-pages -d dist"
   },
   "dependencies": {
     "clipboard": "^1.5.15",
     "lodash.throttle": "^4.1.1",
     "native-toast": "^0.2.0",
     "query-string": "^4.2.3"
+  },
+  "devDependencies": {
+    "gh-pages": "^0.12.0"
   }
 }
