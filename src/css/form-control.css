@@ -1,0 +1,25 @@
+.button {
+  border: 1px solid #e2e2e2;
+  border-radius: 4px;
+  display: block;
+  outline: none;
+  background-color: white;
+  width: 100%;
+  padding: 8px 12px;
+  font-size: 16px;
+  cursor: pointer;
+  &:hover {
+    background-color: #f0f0f0;
+    border-color: #ccc;
+  }
+}
+.form-control[type="text"] {
+  width: 100%;
+  padding: 5px 8px;
+  outline: none;
+  border: 1px solid #e2e2e2;
+  border-radius: 4px;
+  &:focus {
+    border-color: #ccc;
+  }
+}

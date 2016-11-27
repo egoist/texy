@@ -1,0 +1,82 @@
+#app {
+  display: flex;
+  height: 100%;
+}
+.sidebar {
+  margin: 0;
+  width: 280px;
+  border-right: 1px solid #e2e2e2;
+  height: 100%;
+  padding: 10px;
+  overflow: auto;
+  .site-title {
+    margin: 0 0 10px 0;
+    a {
+      color: #333;
+      &:hover {
+        text-decoration: none;
+      }
+    }
+  }
+  .description {
+    color: #999;
+    margin-bottom: 20px;
+  }
+}
+.main {
+  width: calc(100% - 280px);
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  &.left-to-right {
+    flex-direction: row;
+    .input, .preview {
+      width: 50%;
+      height: 100%;
+    }
+  }
+}
+.input {
+  height: 50%;
+  width: 100%;
+  border: none;
+  outline: none;
+  background-color: #f0f0f0;
+  resize: none;
+  padding: 10px;
+  font-size: 18px;
+}
+.preview {
+  height: 50%;
+  overflow: auto;
+  position: relative;
+}
+.settings {
+  label {
+    display: block;
+    user-select: none;
+  }
+  .form-control {
+    display: block;
+    margin-top: 5px;
+  }
+  .form-group {
+    margin-bottom: 20px;
+  }
+}
+.tip {
+  padding: 10px;
+  background-color: #f9f9f9;
+  margin-bottom: 20px;
+  color: #666;
+  font-size: 13px;
+  p {
+    margin: 0;
+  }
+}
+#link {
+  color: #999;
+  &:focus {
+    color: #333;
+  }
+}
