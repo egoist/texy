@@ -58,9 +58,10 @@
         class="input"
         rows="10"
         v-model="text"
+        ref="input"
         placeholder="Write your story...">
       </textarea>
-      <div class="preview">
+      <div class="preview" ref="preview">
         <canvas ref="canvas" style="display: none"></canvas>
         <img v-show="dataURL" ref="image" :src="dataURL" />
       </div>
@@ -145,6 +146,12 @@
         }
 
         this.updateDataURL()
+        this.syncScroll()
+      },
+      syncScroll() {
+        const {input, preview} = this.$refs
+        const percentage = input.scrollTop / input.scrollHeight
+        preview.scrollTop = percentage * preview.scrollHeight
       }
     }
   }
