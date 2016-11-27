@@ -1,7 +1,9 @@
 <template>
   <div id="app">
     <figure class="sidebar">
-      <h1 class="site-title">Texy</h1>
+      <h1 class="site-title">
+        <a href="/">Texy</a>
+      </h1>
       <div class="description">
         Convert text to image
       </div>
@@ -29,7 +31,7 @@
        </div>
        <div class="tip">
          <p>
-           Mama finally don't need to worry about the words limit of my tweets! Just copy the image and rock ᕕ(ᐛ)ᕗ
+           Mama finally doesn't need to worry about the words limit of my tweets! Just copy the image and rock ᕕ(ᐛ)ᕗ
          </p>
        </div>
        <div class="credit">
@@ -51,13 +53,17 @@
 </template>
 
 <script>
+  import qs from 'query-string'
+
+  const initialQuery = qs.parse(location.hash.substr(1))
+
   export default {
     data() {
       return {
-        text: '',
+        text: initialQuery.text || '',
         settings: {
-          backgroundColor: '#ffffff',
-          textColor: '#000000'
+          backgroundColor: initialQuery.backgroundColor || '#ffffff',
+          textColor: initialQuery.textColor || '#000000'
         }
       }
     },
@@ -66,16 +72,18 @@
         deep: true
       })
       this.$watch('text', this.handleChange)
+
+      this.handleChange()
     },
     methods: {
-      getDataURL() {
-        const {canvas} = this.$refs
-        const ctx = canvas.getContext('2d')
-        return ctx.getImageData(0, 0, canvas.width, canvas.height)
-      },
       handleChange() {
         console.log('render...')
         const {text} = this
+
+        if (text) {
+          this.updateHash()
+        }
+
         const {canvas} = this.$refs
         const ctx = canvas.getContext('2d')
 
@@ -97,6 +105,14 @@
         for (let i = 0; i < lines.length; i++) {
           ctx.fillText(lines[i], x, y + (i * lineheight))
         }
+      },
+      updateHash() {
+        const query = {
+          ...this.settings,
+          text: this.text
+        }
+        const hash = `#?${qs.stringify(query)}`
+        location.hash = hash
       }
     }
   }
@@ -138,6 +154,10 @@
     overflow: auto;
     .site-title {
       margin: 0 0 10px 0;
+      color: #333;
+      &:hover {
+        text-decoration: none;
+      }
     }
     .description {
       color: #999;

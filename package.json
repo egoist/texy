@@ -6,5 +6,7 @@
     "build": "vbuild",
     "surge": "npm run build && surge -d texy.surge.sh -p dist"
   },
-  "dependencies": {}
+  "dependencies": {
+    "query-string": "^4.2.3"
+  }
 }
