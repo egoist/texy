@@ -99,7 +99,7 @@
           textColor: initialQuery.textColor || '#000000',
           leftToRight: initialQuery.leftToRight === 'true' ? true : false
         },
-        tweet: encodeURIComponent(`Texy - convert text to image, tweet with no words limit by @rem_rin_rin`)
+        tweet: encodeURIComponent(`#texy - convert text to image, tweet with no words limit by @rem_rin_rin`)
       }
     },
     computed: {
