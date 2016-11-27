@@ -58,6 +58,10 @@
        <div class="credit">
          <a href="https://github.com/egoist/texy">Built with Vue.</a>
        </div>
+       <br/>
+       <a class="twitter-share-button"
+          :href="`https://twitter.com/intent/tweet?text=${tweet}`">
+        Share me on Twitter</a>
     </figure>
     <div
       class="main"
@@ -94,7 +98,8 @@
           backgroundColor: initialQuery.backgroundColor || '#ffffff',
           textColor: initialQuery.textColor || '#000000',
           leftToRight: initialQuery.leftToRight === 'true' ? true : false
-        }
+        },
+        tweet: encodeURIComponent(`Texy - convert text to image, tweet with no words limit by @rem_rin_rin`)
       }
     },
     computed: {
