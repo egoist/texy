@@ -1,6 +1,6 @@
 # texy
 
-https://texy.surge.sh
+https://texy.js.org
 
 ## Todo
 
