@@ -71,6 +71,7 @@
         rows="10"
         v-model="text"
         ref="input"
+        autofocus
         placeholder="Write your story...">
       </textarea>
       <div class="preview" ref="preview">
@@ -86,6 +87,7 @@
   import throttle from 'lodash.throttle'
   import Clipboard from 'clipboard'
   import toast from 'native-toast'
+  import tabOverride from 'taboverride'
 
   const initialQuery = qs.parse(location.hash.substr(1))
 
@@ -122,6 +124,9 @@
         this.text = initialQuery.text
       }
       this.handleChange()
+
+      tabOverride.set(this.$refs.input)
+      tabOverride.tabSize(2)
 
       // clipboard
       const clip = new Clipboard('#link-trigger')
