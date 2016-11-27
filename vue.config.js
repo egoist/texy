@@ -4,5 +4,6 @@ export default {
   title: 'Texy',
   resolve: true,
   template: 'index.html',
-  vendor: ['vue'].concat(Object.keys(pkg.dependencies))
+  vendor: ['vue'].concat(Object.keys(pkg.dependencies)),
+  ga: 'UA-54857209-10'
 }
