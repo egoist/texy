@@ -2,6 +2,12 @@
 
 https://texy.surge.sh
 
+## Todo
+
+- [ ] Word wrap
+- [ ] Highlight programming languages
+- [ ] Insert images
+
 ## Development
 
 ```bash
