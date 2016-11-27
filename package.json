@@ -7,6 +7,9 @@
     "surge": "npm run build && surge -d texy.surge.sh -p dist"
   },
   "dependencies": {
+    "clipboard": "^1.5.15",
+    "lodash.throttle": "^4.1.1",
+    "native-toast": "^0.2.0",
     "query-string": "^4.2.3"
   }
 }

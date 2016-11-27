@@ -28,6 +28,21 @@
             type="color"
             v-model="settings.textColor">
         </div>
+        <div class="form-group">
+          <button
+            type="button"
+            class="button"
+            id="link-trigger"
+            data-clipboard-target="#link">
+            Copy sharable link
+          </button>
+          <input
+            class="form-control"
+            type="text"
+            v-model="link"
+            spellcheck="false"
+            id="link" />
+        </div>
        </div>
        <div class="tip">
          <p>
@@ -55,6 +70,9 @@
 
 <script>
   import qs from 'query-string'
+  import throttle from 'lodash.throttle'
+  import Clipboard from 'clipboard'
+  import toast from 'native-toast'
 
   const initialQuery = qs.parse(location.hash.substr(1))
 
@@ -69,8 +87,18 @@
         }
       }
     },
+    computed: {
+      link() {
+        const query = {
+          ...this.settings,
+          text: this.text
+        }
+        const hash = `#?${qs.stringify(query)}`
+        return location.origin + location.pathname + hash
+      }
+    },
     mounted() {
-      this.$watch('settings', this.handleChange, {
+      this.$watch('settings', throttle(this.handleChange, 150), {
         deep: true
       })
       this.$watch('text', this.handleChange)
@@ -79,6 +107,10 @@
         this.text = initialQuery.text
       }
       this.handleChange()
+
+      // clipboard
+      const clip = new Clipboard('#link-trigger')
+      clip.on('success', () => toast('URL is copied!', 'top'))
     },
     methods: {
       updateDataURL() {
@@ -89,10 +121,6 @@
       handleChange() {
         console.log('render...')
         const {text} = this
-
-        if (text) {
-          this.updateHash()
-        }
 
         const {canvas} = this.$refs
         const ctx = canvas.getContext('2d')
@@ -117,19 +145,12 @@
         }
 
         this.updateDataURL()
-      },
-      updateHash() {
-        const query = {
-          ...this.settings,
-          text: this.text
-        }
-        const hash = `#?${qs.stringify(query)}`
-        location.hash = hash
       }
     }
   }
 </script>
 
+<style src="native-toast/dist/native-toast.css"></style>
 <style>
   html, body {
     height: 100%;
@@ -220,6 +241,40 @@
     font-size: 13px;
     p {
       margin: 0;
+    }
+  }
+  #link {
+    color: #999;
+    &:focus {
+      color: #333;
+    }
+  }
+</style>
+
+<style>
+  .button {
+    border: 1px solid #e2e2e2;
+    border-radius: 4px;
+    display: block;
+    outline: none;
+    background-color: white;
+    width: 100%;
+    padding: 8px 12px;
+    font-size: 16px;
+    cursor: pointer;
+    &:hover {
+      background-color: #f0f0f0;
+      border-color: #ccc;
+    }
+  }
+  .form-control[type="text"] {
+    width: 100%;
+    padding: 5px 8px;
+    outline: none;
+    border: 1px solid #e2e2e2;
+    border-radius: 4px;
+    &:focus {
+      border-color: #ccc;
     }
   }
 </style>
