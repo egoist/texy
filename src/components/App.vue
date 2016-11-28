@@ -147,21 +147,21 @@
 
         const x = 12.5
         const y = 15
-        const lineheight = 30
+        const lineHeight = 30
         const lines = text.split('\n')
         const lineLengthOrder = lines.slice(0).sort((a, b) => {
           return b.length - a.length
         })
         ctx.canvas.width = ctx.measureText(lineLengthOrder[0]).width + 25
-        ctx.canvas.height = (lines.length * lineheight)
+        ctx.canvas.height = (lines.length * lineHeight)
 
         ctx.fillStyle = this.settings.backgroundColor
         ctx.fillRect(0, 0, canvas.width, canvas.height)
-        ctx.textBaseline = "middle"
-        ctx.font="20px Helvetica"
+        ctx.textBaseline = 'middle'
+        ctx.font = '20px Helvetica'
         ctx.fillStyle = this.settings.textColor
         for (let i = 0; i < lines.length; i++) {
-          ctx.fillText(lines[i], x, y + (i * lineheight))
+          ctx.fillText(lines[i], x, y + (i * lineHeight))
         }
 
         this.updateDataURL()
