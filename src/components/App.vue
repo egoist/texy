@@ -60,7 +60,7 @@
        </div>
        <br/>
        <a class="twitter-share-button"
-          :href="`https://twitter.com/intent/tweet?text=${tweet}`">
+          :href="`https://twitter.com/intent/tweet?text=${tweet}&via=rem_rin_rin`">
         Share me on Twitter</a>
     </figure>
     <div
@@ -101,7 +101,7 @@
           textColor: initialQuery.textColor || '#000000',
           leftToRight: initialQuery.leftToRight === 'true' ? true : false
         },
-        tweet: encodeURIComponent(`#texy - convert text to image, tweet with no words limit by @rem_rin_rin`)
+        tweet: encodeURIComponent(`#texy - convert text to image, tweet with no words limit`)
       }
     },
     computed: {

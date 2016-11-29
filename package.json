@@ -4,7 +4,6 @@
   "scripts": {
     "dev": "vbuild --dev",
     "build": "vbuild",
-    "surge": "npm run build && surge -d texy.surge.sh -p dist",
     "gh": "npm run build && gh-pages -d dist"
   },
   "dependencies": {
